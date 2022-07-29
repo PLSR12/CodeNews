@@ -1,0 +1,5 @@
+export { Header } from './Header'
+export { SideMenuAdmin } from './SideMenuAdmin'
+export { CardNoticies } from './CardNoticies'
+export { Button } from './Button'
+export { ErrorMessage } from './ErrorMessage'
