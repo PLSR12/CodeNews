@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const ContainerSideNav = styled.div<{
   collapsed: boolean
-  coloring: string
 }>`
   display: flex;
   transition: all 0.5s ease;
@@ -15,10 +14,7 @@ export const ContainerSideNav = styled.div<{
   }
 
   .pro-sidebar-inner {
-    background: ${(props) =>
-      props.coloring === 'bk'
-        ? 'var(--color-primary-first-dark)'
-        : ' #000'};
+    background: #2779f5;
     max-width: 200px;
   }
 
@@ -37,10 +33,7 @@ export const ContainerSideNav = styled.div<{
     color: #f5ebdc;
 
     &:hover {
-      background: ${(props) =>
-        props.coloring === 'bk'
-          ? 'var(--color-primary-first-main)'
-          : 'var(--nola_purple)'};
+      background: gray;
     }
 
     a {
@@ -54,10 +47,7 @@ export const ContainerSideNav = styled.div<{
   .pro-menu-item.active.displayColapsed > .pro-inner-item,
   .pro-menu-item.active > .pro-inner-item {
     a {
-      color: ${(props) =>
-        props.coloring === 'bk'
-          ? 'var(--color-primary-first-dark)'
-          : ' var(--popeyes_orange)'};
+      color: gray;
     }
 
     &::after {
@@ -67,10 +57,7 @@ export const ContainerSideNav = styled.div<{
       height: 28px;
       right: 0;
       border-radius: var(--border-radius-medium);
-      background: ${(props) =>
-        props.coloring === 'bk'
-          ? 'var(--color-primary-first-dark)'
-          : '  var(--popeyes_orange)'};
+      background: gray;
     }
   }
 
@@ -91,7 +78,7 @@ export const ContainerSideNav = styled.div<{
   }
 
   .pro-menu-item.active > .pro-inner-item {
-    background-color: var(--color-secondary-first-main);
+    background-color: white;
 
     &:hover {
       background-color: none;
@@ -100,10 +87,7 @@ export const ContainerSideNav = styled.div<{
     .pro-icon-wrapper {
       svg {
         path {
-          fill: ${(props) =>
-            props.coloring === 'bk'
-              ? 'var(--color-primary-first-dark)'
-              : '  var(--popeyes_orange)'};
+          fill: gray;
         }
       }
     }
@@ -139,6 +123,7 @@ export const ContainerButtonToogle = styled.div`
 
 export const ButtonToogleSidebar = styled.button`
   background: none;
+  cursor: pointer;
   border: none;
 `
 

@@ -26,7 +26,7 @@ export function SideMenuAdmin() {
   }, [])
 
   return (
-    <ContainerSideNav coloring={navBarMenu.coloring} collapsed={isColapsed}>
+    <ContainerSideNav collapsed={isColapsed}>
       <ProSidebar collapsed={isColapsed} collapsedWidth={96}>
         <HeaderSidebar></HeaderSidebar>
 

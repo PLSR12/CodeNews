@@ -1,26 +1,26 @@
 import paths from '../../config/paths'
 
-import { IconDashboard, IconSettings } from '../Icons'
+import { IconDashboard } from '../Icons'
 
-import FastfoodIcon from '@mui/icons-material/Fastfood'
+import NewspaperIcon from '@mui/icons-material/Newspaper'
+import FiberNewIcon from '@mui/icons-material/FiberNew'
 
 export const navBar = {
-  coloring: 'pp',
   menu: [
     {
-      icon: FastfoodIcon,
+      icon: NewspaperIcon,
       pathname: 'admin-noticias',
-      label: 'Listar Noticias',
+      label: 'Listar Notícias',
       link: paths.Notices,
     },
     {
-      icon: IconDashboard,
+      icon: FiberNewIcon,
       pathname: 'nova-noticia',
-      label: 'Nova Noticia',
+      label: 'Nova Notícia',
       link: paths.NewNotice,
     },
     {
-      icon: IconSettings,
+      icon: IconDashboard,
       pathname: 'nova-categoria',
       label: 'Nova Categoria',
       link: paths.NewCategory,
