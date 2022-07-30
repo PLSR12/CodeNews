@@ -2,6 +2,8 @@ import { createGlobalStyle } from 'styled-components'
 
 import 'react-toastify/dist/ReactToastify.css'
 
+import './_root.css'
+
 export default createGlobalStyle`
 
 * {
