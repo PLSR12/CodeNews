@@ -3,8 +3,10 @@ import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar'
 import { Link } from 'react-router-dom'
 
 import 'react-pro-sidebar/dist/css/styles.css'
-import { SideBarNavContext } from '../../context/sideBarNavContext'
-import { IconToogleSidebar, IconToogleSidebarActive } from '../Icons'
+import { SideBarNavContext } from '../../../context/sideBarNavContext'
+import { IconToogleSidebar, IconToogleSidebarActive } from '../../Atoms/Icons'
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
+
 import {
   ContainerSideNav,
   ContainerButtonToogle,
@@ -28,8 +30,9 @@ export function SideMenuAdmin() {
   return (
     <ContainerSideNav collapsed={isColapsed}>
       <ProSidebar collapsed={isColapsed} collapsedWidth={96}>
-        <HeaderSidebar></HeaderSidebar>
-
+        <HeaderSidebar>
+          <LibraryBooksIcon style={{ color: 'white', width: 30, height: 30 }} />
+        </HeaderSidebar>
         <ContainerButtonToogle>
           <ButtonToogleSidebar onClick={() => setIsColapsed(!isColapsed)}>
             {isColapsed ? <IconToogleSidebar /> : <IconToogleSidebarActive />}

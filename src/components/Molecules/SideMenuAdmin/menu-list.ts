@@ -1,6 +1,6 @@
-import paths from '../../config/paths'
+import paths from '../../../common/constants/paths'
 
-import { IconDashboard } from '../Icons'
+import { IconDashboard } from '../../Atoms/Icons'
 
 import NewspaperIcon from '@mui/icons-material/Newspaper'
 import FiberNewIcon from '@mui/icons-material/FiberNew'

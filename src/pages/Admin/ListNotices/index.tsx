@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import paths from '../../../config/paths'
+import paths from '../../../common/constants/paths'
 
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'

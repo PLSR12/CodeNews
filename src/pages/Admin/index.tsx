@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { Container, ContainerItems } from './styles'
 
@@ -9,7 +8,7 @@ import EditNotice from './EditNotice'
 import NewCategory from './NewCategory'
 
 import { SideMenuAdmin } from '../../components'
-import paths from '../../config/paths'
+import paths from '../../common/constants/paths'
 
 export function Admin({ match: { path } }: any) {
   return (

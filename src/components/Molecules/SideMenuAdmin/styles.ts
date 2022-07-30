@@ -131,10 +131,5 @@ export const HeaderSidebar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px;
-
-  img {
-    width: 50px;
-    height: 60px;
-  }
+  padding: 25px;
 `

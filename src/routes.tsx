@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import Layout from './layout'
 import { Home, Notice, Admin } from './pages'
 
-import paths from './config/paths'
+import paths from './common/constants/paths'
 
 export default function RoutesPath() {
   return (

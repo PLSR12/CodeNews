@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import api from '../../services/api'
-import formatDate from '../../utils/formatDate'
+import formatDate from '../../common/utils/formatDate'
 
 import {
   Container,

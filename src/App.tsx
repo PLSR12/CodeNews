@@ -1,5 +1,5 @@
 import Routes from './routes'
-import GlobalStyle from './styles/global'
+import GlobalStyle from './common/styles/global'
 import AppProvider from './context'
 import { ToastContainer } from 'react-toastify'
 

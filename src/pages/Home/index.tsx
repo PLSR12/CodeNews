@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import api from '../../services/api'
 import { CardNoticies } from '../../components'
-import formatDate from '../../utils/formatDate'
 
 import * as S from './styles'
 
