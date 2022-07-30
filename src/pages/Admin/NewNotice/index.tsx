@@ -9,11 +9,16 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 
 import api from '../../../services/api'
 
-import { ErrorMessage } from '../../../components'
 
-import { Container, Label, Input, ButtonStyle, LabelUpload } from './styles'
+import { Container, Label, ButtonStyle, LabelUpload } from './styles'
+import {
+  ErrorMessage,
+  Box,
+  InputComponent,
+  TextAreaComponent,
+} from './../../../components'
 
-function NewCar() {
+function NewNotice() {
   const [fileName, setFileName] = useState(null)
   const [categories, setCategories] = useState([])
   const { push } = useHistory()
@@ -28,8 +33,8 @@ function NewCar() {
     noticeDataFormData.append('file', data.file[0])
 
     await toast.promise(api.post('notices', noticeDataFormData), {
-      success: 'Noticia criado com sucesso',
-      error: 'Falha ao criar o noticia',
+      success: 'Noticia criada com sucesso',
+      error: 'Falha ao criar a noticia',
     })
 
     setTimeout(() => {
@@ -39,8 +44,8 @@ function NewCar() {
 
   const schema = Yup.object().shape({
     title: Yup.string().required('O nome é obrigatório'),
-    preview: Yup.string().required('O campo é obrigatória'),
-    content: Yup.string().required('O campo é obrigatório'),
+    preview: Yup.string().required('O preview é obrigatória'),
+    content: Yup.string().required('O conteudo é obrigatório'),
     category: Yup.object().required('Escolha uma categoria'),
     file: Yup.mixed().test('required', 'Carregue uma imagem', (value: any) => {
       return value && value.length > 0
@@ -67,62 +72,69 @@ function NewCar() {
 
   return (
     <Container>
-      <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <Label>Titulo:</Label>
-          <Input type="text" {...register('title')} />
-          <ErrorMessage>{errors.title?.message}</ErrorMessage>
-        </div>
-        <div>
-          <Label>Preview:</Label>
-          <textarea {...register('preview')} />
-          <ErrorMessage>{errors.preview?.message}</ErrorMessage>
-        </div>
-        <div>
-          <Label>Contéudo:</Label>
-          <textarea {...register('content')} />
-          <ErrorMessage>{errors.content?.message}</ErrorMessage>
-        </div>
-        <div>
-          <LabelUpload>
-            {fileName || (
-              <>
-                <CloudUploadIcon />
-                Caregue a imagem do noticia
-              </>
-            )}
-            <input
-              type="file"
-              {...register('file')}
-              onChange={(value: any): void => {
-                setFileName(value.target.files[0]?.name)
+      <Box>
+        <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+          <InputComponent
+            text="Titúlo:"
+            register={register}
+            htmlFor="title"
+            error={errors.title}
+          />
+          <TextAreaComponent
+            text="Preview:"
+            register={register}
+            htmlFor="preview"
+            error={errors.preview}
+          />
+          <TextAreaComponent
+            text="Contéudo:"
+            register={register}
+            htmlFor="content"
+            error={errors.content}
+          />
+          <div>
+            <LabelUpload>
+              {fileName || (
+                <>
+                  <CloudUploadIcon />
+                  Caregue a imagem da notícia
+                </>
+              )}
+              <input
+                type="file"
+                {...register('file')}
+                onChange={(value: any): void => {
+                  setFileName(value.target.files[0]?.name)
+                }}
+              />
+            </LabelUpload>
+            <ErrorMessage>{errors.file?.message}</ErrorMessage>
+          </div>
+          <div>
+            <Controller
+              name="category"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <ReactSelect
+                    {...field}
+                    options={categories}
+                    getOptionLabel={(ctg: { id: any; name: string }) =>
+                      ctg.name
+                    }
+                    getOptionValue={(ctg: { id: any }) => ctg.id}
+                    placeholder="Escolha uma categoria"
+                  />
+                )
               }}
-            />
-          </LabelUpload>
-          <ErrorMessage>{errors.file?.message}</ErrorMessage>
-        </div>
-        <div>
-          <Controller
-            name="category"
-            control={control}
-            render={({ field }) => {
-              return (
-                <ReactSelect
-                  {...field}
-                  options={categories}
-                  getOptionLabel={(ctg: { id: any; name: string }) => ctg.name}
-                  getOptionValue={(ctg: { id: any }) => ctg.id}
-                  placeholder="Escolha uma categoria"
-                />
-              )
-            }}
-          ></Controller>
-          <ErrorMessage>{errors.category?.message}</ErrorMessage>
-        </div>
-        <ButtonStyle type="submit"> Adicionar Noticia </ButtonStyle>
-      </form>
+            ></Controller>
+            <ErrorMessage>{errors.category?.message}</ErrorMessage>
+          </div>
+          <ButtonStyle type="submit"> Adicionar Noticia </ButtonStyle>
+        </form>
+      </Box>
     </Container>
   )
 }
 
-export default NewCar
+export default NewNotice

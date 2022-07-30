@@ -8,18 +8,18 @@ import * as Yup from 'yup'
 
 import api from '../../../services/api'
 
-import { ErrorMessage } from '../../../components'
-
+import {
+  ErrorMessage,
+  Box,
+  InputComponent,
+  TextAreaComponent,
+} from './../../../components'
 import {
   Container,
-  Label,
-  Input,
   ButtonStyle,
   LabelUpload,
   CloudUploadIconStyle,
 } from './styles'
-
-// import IAllVehicles from '../../../models/IAllVehicles'
 
 function EditCar() {
   const [fileName, setFileName] = useState(null)
@@ -61,6 +61,7 @@ function EditCar() {
 
   const {
     register,
+    setValue,
     handleSubmit,
     control,
     formState: { errors },
@@ -77,67 +78,76 @@ function EditCar() {
     loadCategories()
   }, [])
 
+  useEffect(() => {
+    setValue('title', notice?.title)
+    setValue('preview', notice?.preview)
+    setValue('content', notice?.content)
+  }, [notice])
+
   return (
     <Container>
-      <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmited)}>
-        <div>
-          <Label>Titulo:</Label>
-          <Input
-            type="text"
-            defaultValue={notice.title}
-            {...register('title')}
+      <Box>
+        <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmited)}>
+          <InputComponent
+            text="Titúlo:"
+            register={register}
+            htmlFor="title"
+            error={errors.title}
           />
-          <ErrorMessage>{errors.title?.message}</ErrorMessage>
-        </div>
-        <div>
-          <Label>Preview:</Label>
-          <textarea defaultValue={notice.preview} {...register('preview')} />
-          <ErrorMessage>{errors.preview?.message}</ErrorMessage>
-        </div>
-        <div>
-          <Label>Conteudo</Label>
-          <textarea defaultValue={notice.content} {...register('content')} />
-          <ErrorMessage>{errors.content?.message}</ErrorMessage>
-        </div>
-        <div>
-          <LabelUpload>
-            {fileName || (
-              <>
-                <CloudUploadIconStyle />
-                Caregue a imagem do noticia
-              </>
-            )}
-            <input
-              type="file"
-              {...register('file')}
-              onChange={(value: any): void => {
-                setFileName(value.target.files[0]?.name)
+          <TextAreaComponent
+            text="Preview:"
+            register={register}
+            htmlFor="preview"
+            error={errors.preview}
+          />
+          <TextAreaComponent
+            text="Contéudo:"
+            register={register}
+            htmlFor="content"
+            error={errors.content}
+          />
+          <div>
+            <LabelUpload>
+              {fileName || (
+                <>
+                  <CloudUploadIconStyle />
+                  Caregue a imagem da notícia
+                </>
+              )}
+              <input
+                type="file"
+                {...register('file')}
+                onChange={(value: any): void => {
+                  setFileName(value.target.files[0]?.name)
+                }}
+              />
+            </LabelUpload>
+            <ErrorMessage>{errors.file?.message}</ErrorMessage>
+          </div>
+          <div>
+            <Controller
+              name="category"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <ReactSelect
+                    {...field}
+                    options={categories}
+                    getOptionLabel={(ctg: { id: any; name: string }) =>
+                      ctg.name
+                    }
+                    getOptionValue={(ctg: { id: any }) => ctg.id}
+                    placeholder="Escolha uma categoria"
+                    defaultValue={notice.category}
+                  />
+                )
               }}
-            />
-          </LabelUpload>
-          <ErrorMessage>{errors.file?.message}</ErrorMessage>
-        </div>
-        <div>
-          <Controller
-            name="brand"
-            control={control}
-            render={({ field }) => {
-              return (
-                <ReactSelect
-                  {...field}
-                  options={categories}
-                  getOptionLabel={(ctg: { id: any; name: string }) => ctg.name}
-                  getOptionValue={(ctg: { id: any }) => ctg.id}
-                  placeholder="Escolha uma marca"
-                  defaultValue={notice.category}
-                />
-              )
-            }}
-          ></Controller>
-          <ErrorMessage>{errors.category?.message}</ErrorMessage>
-        </div>
-        <ButtonStyle type="submit"> Editar Noticia </ButtonStyle>
-      </form>
+            ></Controller>
+            <ErrorMessage>{errors.category?.message}</ErrorMessage>
+          </div>
+          <ButtonStyle type="submit"> Adicionar Noticia </ButtonStyle>
+        </form>
+      </Box>
     </Container>
   )
 }

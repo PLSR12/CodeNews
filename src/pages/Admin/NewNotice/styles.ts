@@ -1,49 +1,11 @@
 import styled from 'styled-components'
 import { Button } from '../../../components'
 
-export const Container = styled.div`
-  display: flex;
-  min-width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-
-  form {
-    background-color: #646464;
-    border-radius: 10px;
-    padding: 40px;
-    display: flex;
-    width: 70%;
-    flex-direction: column;
-    gap: 25px;
-  }
-  textarea {
-    min-width: 100%;
-    min-height: 100px;
-    background: #ffffff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    outline: none;
-    border: none;
-    justify-content: center;
-    align-items: center;
-  }
-`
+export const Container = styled.div``
 export const Label = styled.p`
   font-size: 15px;
   color: #fff;
   margin-bottom: 5px;
-`
-
-export const Input = styled.input`
-  width: 100%;
-  height: 40px;
-  background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding-left: 10px;
-  outline: none;
-  border: none;
 `
 
 export const ButtonStyle = styled(Button)`
@@ -54,14 +16,16 @@ export const ButtonStyle = styled(Button)`
   background-color: #2779f5;
 `
 export const LabelUpload = styled.label`
+  margin-top: 35px;
+  margin-bottom: 15px;
   cursor: pointer;
   display: flex;
-  border: 1px #ffff dashed;
+  border: 1px #000 dashed;
   border-radius: 5px;
-  padding: 15px;
+  padding: 35px;
   gap: 5px;
   align-items: center;
-  color: #ffff;
+  color: #000;
 
   input {
     width: 1px;
